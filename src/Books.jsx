@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import { Img } from '@chakra-ui/react';
+import { color } from 'framer-motion';
 
 // Truncate text to a specified number of words per line
 const truncateText = (text, maxWordsPerLine) => {
@@ -21,12 +23,18 @@ const BooksList = ({ books }) => {
       {books.map((book) => (
         <div key={book.id} className="book-item">
           {/* Task 5.1: Display the book's thumbnail */}
-          <p
+          {book.thumbnail} && (<img src={book.imageLinks.thumbnail} className='book-thumbnail'></img>)
+          <p style={{color:'black'}}
             dangerouslySetInnerHTML={{
               __html: truncateText(book.title, 3),
             }}
           />
           {/* Task 5.2: Use truncateText to display the book's authors */}
+          <p style={{color:'black'}}
+            dangerouslySetInnerHTML={{
+              __html: truncateText(book.authors.join(''), 3),
+            }}
+          />
           <p className="free">Free</p>
         </div>
       ))}
